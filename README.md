@@ -100,14 +100,3 @@ tensorboard --logdir logs/tensorboard
 
 Logs are written to `logs/tensorboard` by default. Override with `--log-dir <path>` at training time.
 
-## Linting
-
-Python lint configuration lives in `pyproject.toml` under `[tool.pylint.*]`.
-Markdown lint configuration lives in `pyproject.toml` under `[tool.pymarkdown]`.
-Format Python files with Black before running lint.
-
-```bash
-uv run black main.py detection_utils.py step_module.py export.py benchmark.py ./models ./data ./scripts
-uv run pylint main.py detection_utils.py step_module.py ./models ./data
-uv run pymarkdown scan README.md AGENTS.md CLAUDE.md .ai/*.md
-```
