@@ -1,0 +1,77 @@
+[project]
+name = "sparseflow"
+version = "0.2.0"
+description = "SparseFlow: modular sparse activation research with PyTorch and Lightning"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Rameez Ismail" }]
+dependencies = [
+  "torch==2.4.1",
+  "torchvision==0.19.1",
+  "lightning>=2.4.0",
+  "torchmetrics[detection]>=1.4.0",
+  "ultralytics>=8.4.0",
+  "datasets>=2.20.0",
+  "huggingface_hub>=0.24.0",
+  "hf_transfer>=0.1.8",
+  "numpy>=1.26.0",
+  "pillow>=10.0.0",
+  "openvino>=2026.1.0",
+  "nncf>=3.1.0",
+  "setuptools<81",
+  "tensorboard>=2.20.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["models*", "data*"]
+
+[tool.pylint.main]
+extension-pkg-allow-list = ["cv2"]
+
+[tool.pylint.messages_control]
+disable = [
+  "attribute-defined-outside-init",
+  "arguments-differ",
+  "missing-class-docstring",
+  "missing-function-docstring",
+  "missing-module-docstring",
+  "protected-access",
+  "super-init-not-called",
+  "too-few-public-methods",
+  "too-many-arguments",
+  "too-many-instance-attributes",
+  "too-many-locals",
+  "too-many-positional-arguments",
+]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint.typecheck]
+generated-members = ["cv2.*"]
+
+[tool.pymarkdown]
+plugins.md013.enabled = false
+
+[tool.black]
+target-version = ["py310"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu121" }
+torchvision = { index = "pytorch-cu121" }
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "pymarkdownlnt>=0.9.30",
+    "pylint>=4.0.5",
+]
